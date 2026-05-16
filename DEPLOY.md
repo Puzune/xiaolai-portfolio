@@ -43,3 +43,5 @@ https://puzune.github.io/xiaolai-portfolio/
 .\portfolio\scripts\build-assets.ps1
 .\portfolio\scripts\validate-portfolio.ps1
 ```
+
+`build-assets.ps1` 只更新 `portfolio/assets` 下的网页用图片，并默认加入右下角 Xiaolai 小水印；原始作品文件不会被覆盖。

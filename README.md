@@ -37,6 +37,11 @@ http://localhost:8080/portfolio/
 .\portfolio\scripts\build-assets.ps1
 ```
 
+默认会在生成的网页图片右下角加入 Xiaolai 小水印；原始作品文件夹不会被修改。需要生成无水印网页图时运行：
+```powershell
+.\portfolio\scripts\build-assets.ps1 -NoWatermark
+```
+
 3. 在 `portfolio/data.js` 中新增或调整项目、归档条目、标签和排序。
 4. 再运行校验脚本，确认没有缺图或脚本错误。
 5. 部署 `portfolio` 目录，简历二维码保持指向同一个线上地址。

@@ -1,4 +1,5 @@
 const PORTFOLIO = window.PORTFOLIO;
+const ASSET_VERSION = PORTFOLIO.assetVersion || "";
 const assetById = new Map(PORTFOLIO.assets.map((item) => [item.id, item]));
 const projectGrid = document.querySelector("#project-grid");
 const projectDetail = document.querySelector("#project-detail");
@@ -19,6 +20,11 @@ function getAsset(id) {
   return item;
 }
 
+function assetUrl(src) {
+  if (!src || !ASSET_VERSION) return src;
+  return `${src}${src.includes("?") ? "&" : "?"}v=${encodeURIComponent(ASSET_VERSION)}`;
+}
+
 function tagList(tags) {
   return tags.map((tag) => `<span>${tag}</span>`).join("");
 }
@@ -30,7 +36,7 @@ function renderProjects() {
       return `
         <article class="project-card" data-project="${project.id}">
           <button class="project-trigger" type="button" aria-label="查看 ${project.title}">
-            <img src="${cover.thumb}" alt="${project.title}" loading="lazy" />
+            <img src="${assetUrl(cover.thumb)}" alt="${project.title}" loading="lazy" />
             <span class="project-index">${project.year}</span>
           </button>
           <div class="project-card-copy">
@@ -53,12 +59,13 @@ function renderProjects() {
 function renderProjectDetail(projectId, shouldScroll = false) {
   const project = PORTFOLIO.projects.find((item) => item.id === projectId) || PORTFOLIO.projects[0];
   const cover = getAsset(project.cover);
+  const coverLarge = assetUrl(cover.large);
   const gallery = project.images.map(getAsset);
 
   projectDetail.innerHTML = `
     <div class="detail-media">
-      <button class="image-button" type="button" data-image="${cover.large}" data-title="${project.title}">
-        <img src="${cover.large}" alt="${project.title}" loading="lazy" />
+      <button class="image-button" type="button" data-image="${coverLarge}" data-title="${project.title}">
+        <img src="${coverLarge}" alt="${project.title}" loading="lazy" />
       </button>
     </div>
     <div class="detail-copy">
@@ -68,13 +75,15 @@ function renderProjectDetail(projectId, shouldScroll = false) {
       <div class="tag-row">${tagList(project.tags)}</div>
       <div class="mini-gallery">
         ${gallery
-          .map(
-            (item) => `
-              <button type="button" class="mini-thumb" data-image="${item.large}" data-title="${item.title}">
-                <img src="${item.thumb}" alt="${item.title}" loading="lazy" />
+          .map((item) => {
+            const itemLarge = assetUrl(item.large);
+            const itemThumb = assetUrl(item.thumb);
+            return `
+              <button type="button" class="mini-thumb" data-image="${itemLarge}" data-title="${item.title}">
+                <img src="${itemThumb}" alt="${item.title}" loading="lazy" />
               </button>
-            `,
-          )
+            `;
+          })
           .join("")}
       </div>
     </div>
@@ -116,17 +125,19 @@ function renderFilters() {
 function renderArchive(activeFilter = "all") {
   const items = PORTFOLIO.assets.filter((item) => activeFilter === "all" || item.tags.includes(activeFilter));
   archiveGrid.innerHTML = items
-    .map(
-      (item) => `
-        <button class="archive-item" type="button" data-image="${item.large}" data-title="${item.title}">
-          <img src="${item.thumb}" alt="${item.title}" loading="lazy" />
+    .map((item) => {
+      const itemLarge = assetUrl(item.large);
+      const itemThumb = assetUrl(item.thumb);
+      return `
+        <button class="archive-item" type="button" data-image="${itemLarge}" data-title="${item.title}">
+          <img src="${itemThumb}" alt="${item.title}" loading="lazy" />
           <span>
             <strong>${item.title}</strong>
             <em>${item.type}</em>
           </span>
         </button>
-      `,
-    )
+      `;
+    })
     .join("");
 
   archiveGrid.querySelectorAll(".archive-item").forEach((item) => {

@@ -1,4 +1,5 @@
 window.PORTFOLIO = {
+  assetVersion: "20260517-wm1",
   profile: {
     title: "陶瓷产品与文创设计作品集",
     subtitle: "Ceramic Product / Cultural Creative",
