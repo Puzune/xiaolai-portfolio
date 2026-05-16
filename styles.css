@@ -156,7 +156,6 @@ h1 span {
 }
 
 .hero-meta span,
-.overview-band span,
 .tag-row span {
   display: inline-flex;
   align-items: center;
@@ -212,13 +211,6 @@ h1 span {
 .hero-img-e {
   grid-column: 2;
   grid-row: 3;
-}
-
-.overview-band {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 18px clamp(18px, 5vw, 72px) 28px;
 }
 
 .section-shell,
