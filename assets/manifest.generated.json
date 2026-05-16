@@ -89,19 +89,19 @@
     },
     {
         "id":  "poster-01",
-        "title":  "春风海报1",
+        "title":  "春分海报1",
         "folder":  "海报设计作品",
         "large":  "assets/large/poster-01.jpg",
         "thumb":  "assets/thumbs/poster-01.jpg",
-        "source":  "海报设计作品\\春风海报1.jpg"
+        "source":  "海报设计作品\\春分海报1.jpg"
     },
     {
         "id":  "poster-02",
-        "title":  "春风海报2",
+        "title":  "春分海报2",
         "folder":  "海报设计作品",
         "large":  "assets/large/poster-02.jpg",
         "thumb":  "assets/thumbs/poster-02.jpg",
-        "source":  "海报设计作品\\春风海报2.jpg"
+        "source":  "海报设计作品\\春分海报2.jpg"
     },
     {
         "id":  "poster-03",
