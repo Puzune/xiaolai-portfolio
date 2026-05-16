@@ -260,8 +260,7 @@ h1 span {
 
 .project-trigger img,
 .archive-item img,
-.mini-thumb img,
-.image-button img {
+.mini-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -333,16 +332,16 @@ h1 span {
 
 .detail-media {
   min-height: 420px;
+  display: flex;
+  align-items: center;
 }
 
-.image-button {
+.detail-main-image {
   width: 100%;
   height: min(72vh, 760px);
-  padding: 0;
-  border: 0;
+  object-fit: contain;
   background: #eee5db;
   box-shadow: var(--shadow);
-  cursor: zoom-in;
 }
 
 .detail-copy p:not(.eyebrow) {
@@ -363,7 +362,25 @@ h1 span {
   padding: 0;
   border: 1px solid rgba(222, 208, 192, 0.9);
   background: #efe6da;
-  cursor: zoom-in;
+  cursor: pointer;
+  opacity: 0.72;
+  transition: border-color 180ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.mini-thumb:hover,
+.mini-thumb.is-active {
+  opacity: 1;
+}
+
+.mini-thumb.is-active {
+  border-color: var(--clay);
+  outline: 2px solid rgba(184, 101, 69, 0.28);
+  outline-offset: 2px;
+}
+
+.mini-thumb:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
 }
 
 .segmented-control {
@@ -560,7 +577,7 @@ code {
     min-height: 0;
   }
 
-  .image-button {
+  .detail-main-image {
     height: 62vh;
   }
 
@@ -577,7 +594,7 @@ code {
 
   .nav-links {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     font-size: 13px;
   }

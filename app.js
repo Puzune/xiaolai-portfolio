@@ -61,12 +61,11 @@ function renderProjectDetail(projectId, shouldScroll = false) {
   const cover = getAsset(project.cover);
   const coverLarge = assetUrl(cover.large);
   const gallery = project.images.map(getAsset);
+  const hasCoverThumb = gallery.some((item) => item.id === cover.id);
 
   projectDetail.innerHTML = `
     <div class="detail-media">
-      <button class="image-button" type="button" data-image="${coverLarge}" data-title="${project.title}">
-        <img src="${coverLarge}" alt="${project.title}" loading="lazy" />
-      </button>
+      <img class="detail-main-image" src="${coverLarge}" alt="${project.title}" loading="lazy" decoding="async" />
     </div>
     <div class="detail-copy">
       <p class="eyebrow">${project.type} / ${project.year}</p>
@@ -75,11 +74,12 @@ function renderProjectDetail(projectId, shouldScroll = false) {
       <div class="tag-row">${tagList(project.tags)}</div>
       <div class="mini-gallery">
         ${gallery
-          .map((item) => {
+          .map((item, index) => {
             const itemLarge = assetUrl(item.large);
             const itemThumb = assetUrl(item.thumb);
+            const isActive = item.id === cover.id || (!hasCoverThumb && index === 0);
             return `
-              <button type="button" class="mini-thumb" data-image="${itemLarge}" data-title="${item.title}">
+              <button type="button" class="mini-thumb ${isActive ? "is-active" : ""}" data-large="${itemLarge}" data-title="${item.title}" aria-label="展示 ${item.title}" aria-pressed="${isActive ? "true" : "false"}">
                 <img src="${itemThumb}" alt="${item.title}" loading="lazy" />
               </button>
             `;
@@ -93,8 +93,17 @@ function renderProjectDetail(projectId, shouldScroll = false) {
     card.classList.toggle("is-active", card.dataset.project === project.id);
   });
 
-  projectDetail.querySelectorAll("[data-image]").forEach((button) => {
-    button.addEventListener("click", () => openLightbox(button.dataset.image, button.dataset.title));
+  const mainImage = projectDetail.querySelector(".detail-main-image");
+  projectDetail.querySelectorAll(".mini-thumb").forEach((button) => {
+    button.addEventListener("click", () => {
+      mainImage.src = button.dataset.large;
+      mainImage.alt = button.dataset.title;
+      projectDetail.querySelectorAll(".mini-thumb").forEach((item) => {
+        const isSelected = item === button;
+        item.classList.toggle("is-active", isSelected);
+        item.setAttribute("aria-pressed", isSelected ? "true" : "false");
+      });
+    });
   });
 
   if (shouldScroll) {
