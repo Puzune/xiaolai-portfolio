@@ -130,7 +130,7 @@ p {
 
 h1 {
   margin-bottom: 24px;
-  font-size: clamp(46px, 6.2vw, 80px);
+  font-size: clamp(40px, 5.2vw, 72px);
   line-height: 1.02;
   letter-spacing: 0;
   font-weight: 850;
@@ -622,7 +622,7 @@ code {
   }
 
   h1 {
-    font-size: 42px;
+    font-size: 39px;
     line-height: 1.05;
   }
 
