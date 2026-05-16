@@ -6,11 +6,11 @@ window.PORTFOLIO = {
   },
   filters: [
     { id: "all", label: "全部" },
-    { id: "product", label: "产品陶瓷" },
-    { id: "visual", label: "视觉海报" },
+    { id: "product", label: "陶瓷产品" },
+    { id: "visual", label: "视觉设计" },
     { id: "craft", label: "工艺实践" },
     { id: "sketch", label: "手绘推导" },
-    { id: "model", label: "三维建模" },
+    { id: "model", label: "三维模型" },
   ],
   assets: [
     { id: "render-01", title: "荷叶盏延伸", type: "产品效果", tags: ["product"], thumb: "assets/thumbs/render-01.jpg", large: "assets/large/render-01.jpg" },

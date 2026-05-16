@@ -3,8 +3,8 @@ const ASSET_VERSION = PORTFOLIO.assetVersion || "";
 const assetById = new Map(PORTFOLIO.assets.map((item) => [item.id, item]));
 const projectGrid = document.querySelector("#project-grid");
 const projectDetail = document.querySelector("#project-detail");
-const archiveGrid = document.querySelector("#archive-grid");
-const archiveFilters = document.querySelector("#archive-filters");
+const galleryGrid = document.querySelector("#gallery-grid");
+const galleryFilters = document.querySelector("#gallery-filters");
 const lightbox = document.querySelector("#lightbox");
 const lightboxImage = document.querySelector("#lightbox-image");
 const lightboxCaption = document.querySelector("#lightbox-caption");
@@ -112,33 +112,33 @@ function renderProjectDetail(projectId, shouldScroll = false) {
 }
 
 function renderFilters() {
-  archiveFilters.innerHTML = PORTFOLIO.filters
+  galleryFilters.innerHTML = PORTFOLIO.filters
     .map(
       (filter) => `
-        <button type="button" class="filter-button ${filter.id === "all" ? "is-active" : ""}" data-filter="${filter.id}">
+        <button type="button" class="gallery-filter-button ${filter.id === "all" ? "is-active" : ""}" data-filter="${filter.id}">
           ${filter.label}
         </button>
       `,
     )
     .join("");
 
-  archiveFilters.querySelectorAll("button").forEach((button) => {
+  galleryFilters.querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
-      archiveFilters.querySelectorAll("button").forEach((item) => item.classList.remove("is-active"));
+      galleryFilters.querySelectorAll("button").forEach((item) => item.classList.remove("is-active"));
       button.classList.add("is-active");
-      renderArchive(button.dataset.filter);
+      renderGallery(button.dataset.filter);
     });
   });
 }
 
-function renderArchive(activeFilter = "all") {
+function renderGallery(activeFilter = "all") {
   const items = PORTFOLIO.assets.filter((item) => activeFilter === "all" || item.tags.includes(activeFilter));
-  archiveGrid.innerHTML = items
+  galleryGrid.innerHTML = items
     .map((item) => {
       const itemLarge = assetUrl(item.large);
       const itemThumb = assetUrl(item.thumb);
       return `
-        <button class="archive-item" type="button" data-image="${itemLarge}" data-title="${item.title}">
+        <button class="gallery-item" type="button" data-image="${itemLarge}" data-title="${item.title}">
           <img src="${itemThumb}" alt="${item.title}" loading="lazy" />
           <span>
             <strong>${item.title}</strong>
@@ -149,7 +149,7 @@ function renderArchive(activeFilter = "all") {
     })
     .join("");
 
-  archiveGrid.querySelectorAll(".archive-item").forEach((item) => {
+  galleryGrid.querySelectorAll(".gallery-item").forEach((item) => {
     item.addEventListener("click", () => openLightbox(item.dataset.image, item.dataset.title));
   });
 }
@@ -180,4 +180,4 @@ document.addEventListener("keydown", (event) => {
 renderProjects();
 renderProjectDetail(PORTFOLIO.projects[0].id);
 renderFilters();
-renderArchive();
+renderGallery();
