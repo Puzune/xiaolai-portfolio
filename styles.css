@@ -222,8 +222,7 @@ h1 span {
 }
 
 .section-shell,
-.detail-section,
-.update-band {
+.detail-section {
   max-width: 1480px;
   margin: 0 auto;
   padding: clamp(46px, 7vw, 96px) clamp(18px, 5vw, 72px);
@@ -238,8 +237,7 @@ h1 span {
 }
 
 .section-heading h2,
-.detail-copy h2,
-.update-band h2 {
+.detail-copy h2 {
   margin: 0;
   font-size: clamp(28px, 4.8vw, 58px);
   line-height: 1.05;
@@ -439,22 +437,6 @@ h1 span {
   font-style: normal;
 }
 
-.update-band {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1fr);
-  gap: clamp(24px, 5vw, 72px);
-  margin-bottom: 56px;
-  background: linear-gradient(135deg, rgba(135, 168, 152, 0.2), rgba(184, 101, 69, 0.15));
-}
-
-.update-grid {
-  display: grid;
-  gap: 18px;
-  color: #514940;
-  font-size: 16px;
-  line-height: 1.85;
-}
-
 code {
   padding: 2px 5px;
   background: rgba(255, 255, 255, 0.56);
@@ -511,8 +493,7 @@ code {
 
 @media (max-width: 1080px) {
   .hero,
-  .detail-section,
-  .update-band {
+  .detail-section {
     grid-template-columns: 1fr;
   }
 
