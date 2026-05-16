@@ -128,16 +128,44 @@ p {
   margin-top: 0;
 }
 
-h1 {
+.hero-title {
+  max-width: 540px;
   margin-bottom: 24px;
-  font-size: clamp(40px, 5.2vw, 72px);
-  line-height: 1.02;
+  color: var(--ink);
+  font-family:
+    "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", "SimSun",
+    serif;
+  font-size: 66px;
+  font-weight: 900;
+  line-height: 0.98;
   letter-spacing: 0;
-  font-weight: 850;
+  text-rendering: geometricPrecision;
 }
 
-h1 span {
+.hero-title-line {
   display: block;
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+}
+
+.hero-title-primary {
+  text-shadow: 0.055em 0.045em 0 rgba(66, 103, 122, 0.16);
+}
+
+.hero-title-secondary {
+  margin-top: 6px;
+  text-shadow: 0.05em 0.04em 0 rgba(184, 101, 69, 0.16);
+}
+
+.hero-title-secondary::after {
+  content: "";
+  display: inline-block;
+  width: 0.28em;
+  height: 0.28em;
+  margin-left: 0.12em;
+  background: var(--clay);
+  transform: translateY(0.03em);
 }
 
 .hero-lead {
@@ -558,8 +586,9 @@ code {
     padding-top: 34px;
   }
 
-  h1 {
-    font-size: 48px;
+  .hero-title {
+    font-size: 46px;
+    line-height: 1;
   }
 
   .hero-board {
@@ -634,9 +663,10 @@ code {
     text-align: right;
   }
 
-  h1 {
-    font-size: 39px;
-    line-height: 1.05;
+  .hero-title {
+    font-size: 37px;
+    line-height: 1.03;
+    margin-bottom: 20px;
   }
 
   .hero-lead {
