@@ -51,12 +51,12 @@ function renderProjects() {
 
   projectGrid.querySelectorAll(".project-card").forEach((card) => {
     card.addEventListener("click", () => {
-      renderProjectDetail(card.dataset.project, true);
+      renderProjectDetail(card.dataset.project);
     });
   });
 }
 
-function renderProjectDetail(projectId, shouldScroll = false) {
+function renderProjectDetail(projectId) {
   const project = PORTFOLIO.projects.find((item) => item.id === projectId) || PORTFOLIO.projects[0];
   const cover = getAsset(project.cover);
   const coverLarge = assetUrl(cover.large);
@@ -105,10 +105,6 @@ function renderProjectDetail(projectId, shouldScroll = false) {
       });
     });
   });
-
-  if (shouldScroll) {
-    projectDetail.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 }
 
 function renderFilters() {

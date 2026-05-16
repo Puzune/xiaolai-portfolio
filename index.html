@@ -11,7 +11,7 @@
     <meta property="og:image" content="assets/thumbs/render-06.jpg?v=20260517-wm1" />
     <title>Xiaolai | Ceramic Product & Cultural Creative Design</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=20260517-11" />
+    <link rel="stylesheet" href="styles.css?v=20260517-14" />
   </head>
   <body>
     <header class="site-header" aria-label="作品集导航">
@@ -51,15 +51,18 @@
         </div>
       </section>
 
-      <section id="projects" class="section-shell">
-        <div class="section-heading">
-          <p class="eyebrow">Selected Projects</p>
-          <h2>精选项目</h2>
+      <section id="projects" class="section-shell selected-section">
+        <div class="project-browser">
+          <div class="project-chooser">
+            <div class="section-heading project-heading">
+              <p class="eyebrow">Selected Projects</p>
+              <h2>精选项目</h2>
+            </div>
+            <div id="project-grid" class="project-grid" aria-label="精选项目切换"></div>
+          </div>
+          <section id="project-detail" class="detail-section" aria-live="polite"></section>
         </div>
-        <div id="project-grid" class="project-grid"></div>
       </section>
-
-      <section id="project-detail" class="detail-section" aria-live="polite"></section>
 
       <section id="gallery" class="section-shell gallery-section">
         <div class="gallery-heading">
@@ -80,7 +83,7 @@
       </figure>
     </div>
 
-    <script src="data.js?v=20260517-11"></script>
-    <script src="app.js?v=20260517-11"></script>
+    <script src="data.js?v=20260517-14"></script>
+    <script src="app.js?v=20260517-14"></script>
   </body>
 </html>
