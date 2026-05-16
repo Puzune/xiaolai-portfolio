@@ -2,6 +2,12 @@
 
 这是给简历二维码使用的静态作品集原型。页面入口是 `portfolio/index.html`，内容配置集中在 `portfolio/data.js`。
 
+线上地址：
+
+```text
+https://puzune.github.io/xiaolai-portfolio/
+```
+
 ## 本地预览
 
 在项目根目录运行：

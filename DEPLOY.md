@@ -1,5 +1,11 @@
 # 部署前清单
 
+当前 GitHub Pages 地址：
+
+```text
+https://puzune.github.io/xiaolai-portfolio/
+```
+
 ## 需要确认
 
 1. 作品集署名：现在使用 `Xiaolai Portfolio`，上线前建议替换成你的真实姓名或希望被看到的设计师名。
