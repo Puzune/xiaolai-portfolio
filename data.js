@@ -158,7 +158,7 @@ window.PORTFOLIO = {
       year: "2024",
       tags: ["饰品", "陶瓷", "手工"],
       cover: "poster-17",
-      images: ["poster-17", "craft-07", "craft-08", "sketch-09", "model-08"],
+      images: ["poster-17", "craft-07", "craft-08", "sketch-09"],
       summary: "从星月夜色彩与形态中发展陶瓷饰品方案，包含草图、建模、实物组合与最终展示海报。",
     },
   ],
