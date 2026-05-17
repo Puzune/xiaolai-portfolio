@@ -122,7 +122,25 @@ function Add-XiaolaiWatermark($bitmap, $graphics) {
   }
 }
 
-function Resize-Image($src, $dest, $maxSide, $quality) {
+function Redact-PersonalInfoBlock($bitmap, $graphics, $assetId) {
+  if ($assetId -ne "poster-12") { return }
+
+  $x = [int][Math]::Floor($bitmap.Width * 0.762)
+  $y = [int][Math]::Floor($bitmap.Height * 0.874)
+  $right = [int][Math]::Ceiling($bitmap.Width * 0.984)
+  $bottom = [int][Math]::Ceiling($bitmap.Height * 0.974)
+  $width = [Math]::Max(1, $right - $x)
+  $height = [Math]::Max(1, $bottom - $y)
+
+  $brush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::White)
+  try {
+    $graphics.FillRectangle($brush, $x, $y, $width, $height)
+  } finally {
+    $brush.Dispose()
+  }
+}
+
+function Resize-Image($src, $dest, $maxSide, $quality, $assetId) {
   $img = [System.Drawing.Image]::FromFile($src)
   try {
     $scale = [Math]::Min($maxSide / $img.Width, $maxSide / $img.Height)
@@ -139,6 +157,7 @@ function Resize-Image($src, $dest, $maxSide, $quality) {
         $graphics.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
         $graphics.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::AntiAliasGridFit
         $graphics.DrawImage($img, 0, 0, $width, $height)
+        Redact-PersonalInfoBlock $bitmap $graphics $assetId
         if (-not $NoWatermark) {
           Add-XiaolaiWatermark $bitmap $graphics
         }
@@ -178,8 +197,8 @@ Get-ChildItem -LiteralPath $root -Directory |
         $large = Join-Path $largeDir ($id + ".jpg")
         $thumb = Join-Path $thumbDir ($id + ".jpg")
 
-        Resize-Image $_.FullName $large 1800 86
-        Resize-Image $_.FullName $thumb 720 82
+        Resize-Image $_.FullName $large 1800 86 $id
+        Resize-Image $_.FullName $thumb 720 82 $id
 
         $manifest += [PSCustomObject]@{
           id = $id
